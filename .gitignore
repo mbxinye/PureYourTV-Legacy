@@ -1,0 +1,16 @@
+# the virtualenv you create with `python -m venv tools\venv`
+tools/venv/
+# the ADB key tools/tv.py generates on first connect
+tools/adbkey/
+__pycache__/
+*.pyc
+
+# your own TV's dumps (serial, android_id, device names) stay local
+backup/
+# session screenshots and working notes (may show the Wi-Fi name or account avatar) stay local
+shots/
+work/
+# the APK projectivy/install.py downloads is never committed: Projectivy's licence forbids redistributing it
+*.apk
+
+.DS_Store

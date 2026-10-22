@@ -1,0 +1,35 @@
+# 小米电视 3S（2016 国行），Android 6.0.1 / API 23，MIUI TV
+# 状态：候选清单，没有实机验证过。先在 work/ 里复制一份自己的清单，一组一组停用，每停一组重启观察几天。
+# 用法（Windows PowerShell，仓库根目录）：tools\disable.ps1 -TvHost 192.168.1.50 lists\xiaomi-mi-tv-3s.txt
+# 撤销：tools\restore.ps1 -TvHost 192.168.1.50 lists\xiaomi-mi-tv-3s.txt -Stock com.mitv.tvhome
+# 只停用（pm disable-user --user 0），从不卸载；~/.cleanyourtv/ 里的记录是恢复依据，不要删。
+# 停用前先确认包名真的在这台电视上：tools\venv\Scripts\python.exe -I tools\tv.py 'pm list packages'
+#
+# 必须保留、不要写进清单：
+#   com.mitv.tvhome            原生桌面。Projectivy 确认接管 Home 之前不能停；接管之后由
+#                              projectivy/install.py 负责停用，--rollback 负责恢复。
+#   电视/信号源服务             背后是 HDMI、tuner、频道列表和「输入源」菜单
+#   遥控器与蓝牙配对、输入法     停掉就再也按不动了
+#   com.xiaomi.mitv.settings   系统设置本体
+#   固件更新器                  默认保留；要停就写在下面注释里，别删这行说明
+
+# 1. 广告与内容推广（这组最安全，先动它）
+com.miui.systemAdSolution      # MIUI 系统级广告组件
+com.xiaomi.mitv.advertise      # 桌面上的广告位与推广数据
+com.duokan.videodaily          # 「每日精选」视频推广（多看系，部分固件没有）
+
+# 2. 商店、游戏、支付（家里没人用再取消注释；停用后无法自己更新应用）
+#com.xiaomi.mitv.shop          # 商店里的「精品/推荐」页
+#com.xiaomi.mitv.appstore      # 应用商店本体，停了就装不了新应用
+#com.xiaomi.mibox.gamecenter   # 游戏中心，3S 上是否存在未验证
+#com.xiaomi.mitv.payment       # 支付服务；与下一行是不同固件的两种写法，先 dumpsys package 确认
+#com.xiaomi.mitv.pay
+
+# 3. 小米附加功能（按需要）
+#com.xiaomi.mitv.smartshare    # 无线投屏；还在用 Miracast/手机投屏就别停
+#com.xiaomi.smarthome.tv       # 米家电视端
+#com.xiaomi.mimusic2           # 音乐
+
+# 4. mitv.service：不要写进清单
+# 部分 MIUI TV 固件里它是系统服务，停用会连带电视功能一起没。只有在你确认它只做广告数据时才处理。
+#com.xiaomi.mitv.upgrade       # 固件更新器；停用等于永久停留当前固件，想清楚再取消注释

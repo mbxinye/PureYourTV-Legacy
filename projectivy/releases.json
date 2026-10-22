@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "launcher": {
+    "name": "Projectivy Launcher",
+    "package": "com.spocky.projengmenu",
+    "home_activity": "com.spocky.projengmenu.ui.home.MainActivity",
+    "min_sdk": 23,
+    "license_note": "Projectivy Launcher is freeware by spocky, not part of CleanYourTV. Its license does not allow redistribution, so this repository downloads the official APK from the upstream GitHub release and never bundles it. Do not add the APK to this repository or to a mirror.",
+    "releases": [
+      {
+        "version": "4.72",
+        "version_code": 97,
+        "min_sdk": 23,
+        "target_sdk": 37,
+        "url": "https://github.com/spocky/miproja1/releases/download/4.72/ProjectivyLauncher-4.72-c97-xda-release.apk",
+        "sha256": "a312935837b7cf323880455c322f4c98060e3e37e8c6187963fb2c4764534aae",
+        "size": 11432750
+      }
+    ]
+  }
+}
